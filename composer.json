@@ -12,7 +12,8 @@
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.6",
         "mcamara/laravel-localization": "^2.2",
-        "yajra/laravel-datatables": "11"
+        "yajra/laravel-datatables": "11",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",

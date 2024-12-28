@@ -11,11 +11,11 @@ return new class extends Migration
         Schema::create('main_categories', function (Blueprint $table) {
             $table->id();
             $table->string('translation_lang');
-            $table->unsignedBigInteger('translation_of')->nullable();
             $table->string('name');
             $table->string('slug');
             $table->string('photo')->nullable();
             $table->boolean('active')->default(true);
+            $table->foreignId('translation_of')->nullable()->constrained('main_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -104,11 +104,11 @@
                                                     <div class="col-md-6 ">
                                                         <div class="form-group">
                                                             <label for="projectinput1"> رقم الهاتف </label>
-                                                            <input type="text" id="mobile"
+                                                            <input type="text" id="phone"
                                                                    class="form-control"
-                                                                   placeholder="  " name="mobile">
+                                                                   placeholder="  " name="phone">
 
-                                                            @error("mobile")
+                                                            @error("phone")
                                                             <span class="text-danger"> {{$message}}</span>
                                                             @enderror
                                                         </div>
@@ -126,23 +126,19 @@
                                                         </div>
                                                     </div>
 
-
                                                 </div>
-
-
                                                 <div class="row">
-                                                    <div class="class col-12">
-                                                            <div class="form-group">
-                                                                <label for="projectinput1">كلمة المرور  </label>
-                                                                <input type="password" id="password"
-                                                                       class="form-control"
-                                                                       placeholder="  " name="password">
+                                                    <div class="col-md-6 ">
+                                                        <div class="form-group">
+                                                            <label for="projectinput1"> الرقم السري </label>
+                                                            <input type="password" id="password"
+                                                                   class="form-control"
+                                                                   placeholder="" name="password">
 
-                                                                @error("password")
-                                                                <span class="text-danger"> {{$message}}</span>
-                                                                @enderror
-                                                            </div>
-
+                                                            @error("password")
+                                                            <span class="text-danger"> {{$message}}</span>
+                                                            @enderror
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -153,7 +149,8 @@
                                                             <label for="projectinput1"> العنوان  </label>
                                                             <input type="text" id="pac-input"
                                                                    class="form-control"
-                                                                   placeholder="  " name="address">
+                                                                   placeholder="  " name="address"
+                                                            >
 
                                                             @error("address")
                                                             <span class="text-danger"> {{$message}}</span>
@@ -162,28 +159,30 @@
                                                     </div>
 
                                                 </di>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group mt-1">
-                                                            <input type="checkbox" value="1"
-                                                                   name="active"
-                                                                   id="switcheryColor4"
-                                                                   class="switchery" data-color="success"
-                                                                   checked/>
-                                                            <label for="switcheryColor4"
-                                                                   class="card-title ml-1">الحالة </label>
-
-                                                            @error("active")
-                                                            <span class="text-danger"> </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
 
                                             </div>
-
-
                                             <div id="map" style="height: 500px;width: 1000px;"></div>
+
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group mt-1">
+                                                        <input type="hidden" value="0"
+                                                               name="active"/>
+                                                        <input type="checkbox" value="1"
+                                                               name="active"
+                                                               id="switcheryColor4"
+                                                               class="switchery" data-color="success"
+                                                               checked/>
+                                                        <label for="switcheryColor4"
+                                                               class="card-title ml-1">الحالة </label>
+
+                                                        @error("active")
+                                                        <span class="text-danger"> </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <div class="form-actions">
                                                 <button type="button" class="btn btn-warning mr-1"
@@ -210,7 +209,6 @@
 
 
 @section('script')
-
     <script>
 
 
@@ -229,7 +227,7 @@
 
         // This example requires the Places library. Include the libraries=places
         // parameter when you first load the API. For example:
-        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+        //<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
         function initAutocomplete() {
             var map = new google.maps.Map(document.getElementById('map'), {
@@ -418,6 +416,6 @@
         }
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZAuxH9xTzD2DLY2nKSPKrgRi2_y0ejs&libraries=places&callback=initAutocomplete&language=ar&region=EG
-         async defer"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4mWOXE_Ec0kSddi7sinDZ7UsyShrh8jE&libraries=places&callback=initAutocomplete&language=ar&region=EG"
+         async defer></script>
     @stop

@@ -19,7 +19,7 @@ class MainCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'photo' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => 'required_without:id|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category' => 'required|array',
             'category.*.name' => 'required|string',
             'category.*.abbr' => 'required|string',

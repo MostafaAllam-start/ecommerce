@@ -17,6 +17,6 @@ class AdminLoginController extends Controller
             return redirect()->route('admin.dashboard');
         }
         //notify()->error('خطأ في البيانات برجاء المحاولة مرة اخري.');
-        return redirect()->back()->withInput($request);
+        return redirect()->back()->withInput($request->all());
     }
 }

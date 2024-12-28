@@ -11,8 +11,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية</a>
                                 </li>
-                                <li class="breadcrumb-item active"> ألمتاجر
-                                </li>
+                                <li class="breadcrumb-item active">ألمتاجر</li>
                             </ol>
                         </div>
                     </div>
@@ -62,10 +61,10 @@
                                                     <tr>
                                                         <td>{{$vendor -> name}}</td>
                                                         <td><img style="width: 150px; height: 100px;"
-                                                                 src="{{$vendor -> 	logo}}"></td>
+                                                                 src="{{$vendor -> 	getLogo()}}"></td>
 
-                                                        <td>{{$vendor -> mobile}}</td>
-                                                        <td> {{$vendor -> 	category -> name}}</td>
+                                                        <td>{{$vendor -> phone}}</td>
+                                                        <td> @if($vendor -> category != null){{$vendor -> 	category -> name}}@endif</td>
 
                                                         <td> {{$vendor -> getActive()}}</td>
                                                         <td>
@@ -75,12 +74,12 @@
                                                                    class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
 
 
-                                                                <a href=""
+                                                                <a href="{{route('admin.vendors.delete', $vendor->id)}}"
                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
 
 
-                                                                <a href=""
-                                                                   class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">تفعيل</a>
+                                                                <a href="{{route('admin.vendors.change_status', $vendor->id)}}"
+                                                                   class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">@if($vendor->active) إلغاء التفعيل@else     تفعيل@endif  </a>
 
 
                                                             </div>

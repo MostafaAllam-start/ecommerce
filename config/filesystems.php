@@ -44,7 +44,20 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-
+        'maincagtegories' =>[
+            'driver' => 'local',
+            'root' => storage_path('app/public/assets/images/maincagtegories'),
+            'url' => env('APP_URL').'/storage/assets/images/maincagtegories',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'vendors' =>[
+            'driver' => 'local',
+            'root' => storage_path('app/public/assets/images/vendor'),
+            'url' => env('APP_URL').'/storage/assets/images/vendor',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

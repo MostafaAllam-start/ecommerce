@@ -56,7 +56,7 @@
                                             <div class="form-group">
                                                 <div class="text-center">
                                                     <img
-                                                        src="{{$vendor  -> logo}}"
+                                                        src="{{$vendor  -> getLogo()}}"
                                                         class="rounded-circle  height-250" alt="صورة القسم  ">
                                                 </div>
                                             </div>
@@ -84,7 +84,7 @@
                                                             <label for="projectinput1"> الاسم </label>
                                                             <input type="text" value="{{$vendor -> name}}" id="name"
                                                                    class="form-control"
-                                                                   placeholder="  "
+                                                                   placeholder=""
                                                                    name="name">
                                                             @error("name")
                                                             <span class="text-danger">{{$message}}</span>
@@ -121,10 +121,10 @@
                                                             <label for="projectinput1"> رقم الهاتف </label>
                                                             <input type="text" id="mobile"
                                                                    class="form-control"
-                                                                   placeholder="  " name="mobile"
-                                                              value="{{$vendor -> mobile}}">
+                                                                   placeholder="  " name="phone"
+                                                              value="{{$vendor -> phone}}">
 
-                                                            @error("mobile")
+                                                            @error("phone")
                                                             <span class="text-danger"> {{$message}}</span>
                                                             @enderror
                                                         </div>
@@ -181,29 +181,28 @@
                                                     </div>
 
                                                 </di>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group mt-1">
-                                                            <input type="checkbox" value="1"
-                                                                   name="active"
-                                                                   id="switcheryColor4"
-                                                                   class="switchery" data-color="success"
-                                                                   @if($vendor -> active == 1)checked @endif/>
-                                                            <label for="switcheryColor4"
-                                                                   class="card-title ml-1">الحالة </label>
-
-                                                            @error("active")
-                                                            <span class="text-danger"> </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
 
 
                                             <div id="map" style="height: 500px;width: 1000px;"></div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group mt-1">
+                                                        <input type="hidden" value="0" name="active"/>
+                                                        <input type="checkbox" value="1"
+                                                               name="active"
+                                                               id="switcheryColor4"
+                                                               class="switchery" data-color="success"
+                                                               @if($vendor -> active == 1)checked @endif/>
+                                                        <label for="switcheryColor4"
+                                                               class="card-title ml-1">الحالة </label>
 
+                                                        @error("active")
+                                                        <span class="text-danger"> </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="form-actions">
                                                 <button type="button" class="btn btn-warning mr-1"
                                                         onclick="history.back();">
@@ -229,7 +228,6 @@
 
 
 @section('script')
-
     <script>
 
         $("#pac-input").focusin(function() {
@@ -247,7 +245,7 @@
 
         function initAutocomplete() {
 
-            var pos = {lat:   {{ $vendor->latitude }} ,  lng: {{ $vendor->longitude }} };
+            var pos = {lat:   0 ,  lng: 0 };
 
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 15,
@@ -425,6 +423,6 @@
         }
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZAuxH9xTzD2DLY2nKSPKrgRi2_y0ejs&libraries=places&callback=initAutocomplete&language=ar&region=EG
-         async defer"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4mWOXE_Ec0kSddi7sinDZ7UsyShrh8jE&libraries=places&callback=initAutocomplete&language=ar&region=EG"
+            async defer></script>
 @stop

@@ -141,8 +141,8 @@
                                         </form>
 
                                         <ul class="nav nav-tabs">
-                                            @isset($main_category-> categories)
-                                                @foreach($main_category-> categories   as $index =>  $translation)
+                                            @isset($main_category-> translations)
+                                                @foreach($main_category-> translations   as $index =>  $translation)
                                                     <li class="nav-item">
                                                         <a class="nav-link @if($index ==  0) active @endif  " id="homeLable-tab"  data-toggle="tab"
                                                            href="#homeLable{{$index}}" aria-controls="homeLable"
@@ -154,8 +154,8 @@
                                         </ul>
                                         <div class="tab-content px-1 pt-1">
 
-                                            @isset($main_category-> categories)
-                                                @foreach($main_category-> categories   as $index =>  $translation)
+                                            @isset($main_category-> translations)
+                                                @foreach($main_category-> translations   as $index =>  $translation)
 
                                                 <div role="tabpanel" class="tab-pane  @if($index ==  0) active  @endif  " id="homeLable{{$index}}"
                                                  aria-labelledby="homeLable-tab"
@@ -211,7 +211,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group mt-1">
-
+                                                                    <input type="hidden" value="0" name="category[0][active]">
                                                                     <input type="checkbox" value="1"
                                                                            name="category[0][active]"
                                                                            id="switcheryColor4"

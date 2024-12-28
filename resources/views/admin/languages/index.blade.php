@@ -72,6 +72,11 @@
                                                                class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
 
 
+                                                            <a href="{{route('admin.languages.change_status', $language->id)}}"
+                                                               class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">@if($language->active) إلغاء التفعيل@else     تفعيل@endif  </a>
+
+
+
                                                         </div>
                                                     </td>
                                                 </tr>

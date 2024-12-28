@@ -28,6 +28,11 @@ class MainCategory extends Model
         return implode('-', $name);
     }
 
-
+    public function translations (){
+        return $this->hasMany(self::class, 'translation_of');
+    }
+    public function vendors (){
+        return $this->hasMany(Vendor::class, 'category_id');
+    }
 
 }

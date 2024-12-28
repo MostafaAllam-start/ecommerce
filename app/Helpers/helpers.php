@@ -17,3 +17,12 @@ if(!function_exists('slugify')){
         return str_replace(' ', '-', $text);
     }
 }
+
+if(!function_exists('changeStatus')){
+    function changeStatus($resource) :string{
+        $deactivate = $resource->active? "إلغاء" : "";
+        $resource->active = !$resource->active;
+        $resource->save();
+        return sprintf('تم %s التفعيل بنجاح.', $deactivate);
+    }
+}

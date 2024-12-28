@@ -40,4 +40,14 @@ class LanguageController extends Controller
         $language->delete();
         return redirect()->route('admin.languages')->with(['success' => 'تم حذف اللغة بنجاح.']);
     }
+    public function changeStatus($id){
+        try{
+            $language = Language::find($id);
+            $success_message = changeStatus($language);
+            return redirect()->route('admin.languages')->with(['success' => $success_message]);
+        }
+        catch(\Exception $ex){
+            return redirect()->back()->with(['error'=> 'حدث خطأ حاول مرة أخري.']);
+        }
+    }
 }
