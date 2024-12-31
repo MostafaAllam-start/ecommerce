@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('password');
             $table->string('phone')->unique();
-            $table->boolean('active')->default(true);
+            $table->boolean('is_active')->default(true);
             $table->text('address');
-            $table->foreignId('category_id')->nullable()->constrained()->on('main_categories')->nullOnDelete();
+            $table->foreignId('category_id')->nullable()->constrained()->on('categories')->nullOnDelete();
             $table->string('logo')->nullable();
             $table->string('longitude', 30)->nullable();
             $table->string('latitude', 30)->nullable();

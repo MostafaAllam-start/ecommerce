@@ -2,10 +2,21 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\LanguageController;
-use App\Http\Controllers\Admin\MainCategoryController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\VendorController;
+use App\Models\Category;
+use App\Models\SubCategory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+
+Route::middleware('guest')->namespace('Admin')->group(function(){
+    Route::get('/login', [AdminLoginController::class, 'getLogin'])->name('admin.login');
+    Route::post('/login', [AdminLoginController::class, 'postLogin'])->name('admin.postlogin');
+});
+
 
 Route::middleware('admin')->group(function() {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
@@ -21,14 +32,14 @@ Route::middleware('admin')->group(function() {
     });
 
 
-    Route::prefix('main_category')->group(function(){
-        Route::get('/', [MainCategoryController::class, 'index'])->name('admin.main_category');
-        Route::get('/create', [MainCategoryController::class, 'create'])->name('admin.main_category.create');
-        Route::post('/store', [MainCategoryController::class, 'store'])->name('admin.main_category.store');
-        Route::get('/edit/{id}', [MainCategoryController::class, 'edit'])->name('admin.main_category.edit');
-        Route::post('/update/{id}', [MainCategoryController::class, 'update'])->name('admin.main_category.update');
-        Route::get('/delete/{id}', [MainCategoryController::class, 'delete'])->name('admin.main_category.delete');
-        Route::get('/change_status/{id}', [MainCategoryController::class, 'changeStatus'])->name('admin.main_category.change_status');
+    Route::prefix('categories')->group(function(){
+        Route::get('/', [CategoryController::class, 'index'])->name('admin.categories');
+        Route::get('/create', [CategoryController::class, 'create'])->name('admin.categories.create');
+        Route::post('/store', [CategoryController::class, 'store'])->name('admin.categories.store');
+        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+        Route::post('/update/{id}', [CategoryController::class, 'update'])->name('admin.categories.update');
+        Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('admin.categories.delete');
+        Route::get('/change_status/{id}', [CategoryController::class, 'changeStatus'])->name('admin.categories.change_status');
     });
 
     Route::prefix('vendors')->group(function(){
@@ -40,10 +51,49 @@ Route::middleware('admin')->group(function() {
         Route::get('/delete/{id}', [VendorController::class, 'delete'])->name('admin.vendors.delete');
         Route::get('/change_status/{id}', [VendorController::class, 'changeStatus'])->name('admin.vendors.change_status');
     });
+
+
+    Route::prefix('brands')->group(function(){
+        Route::get('/', [BrandController::class, 'index'])->name('admin.brands');
+        Route::get('/create', [BrandController::class, 'create'])->name('admin.brands.create');
+        Route::post('/store', [BrandController::class, 'store'])->name('admin.brands.store');
+        Route::get('/edit/{id}', [BrandController::class, 'edit'])->name('admin.brands.edit');
+        Route::post('/update/{id}', [BrandController::class, 'update'])->name('admin.brands.update');
+        Route::get('/delete/{id}', [BrandController::class, 'delete'])->name('admin.brands.delete');
+        Route::get('/change_status/{id}', [BrandController::class, 'changeStatus'])->name('admin.brands.change_status');
+    });
+
+    Route::prefix('test')->group(function(){
+        Route::get('/sub_categories/', function(){
+            $categories = Category::findOrFail(4);
+            return $categories->subCategories;
+        });
+        Route::get('/categories', function(){
+            $sub_category = SubCategory::findOrFail(1);
+            return $sub_category->mainCategory;
+        });
+
+
+        //handling file upload by using custom disks
+        Route::get('/upload_photo/', function(){
+            return view('admin.test.create');
+        })->name('admin.test.upload_photo');
+        Route::post('/store_photo/', function(Request $request){
+            saveFile($request->file('photo'), 'brands');
+            return redirect()->route('admin.test.list_photos');
+        })->name('admin.test.store_photo');
+        Route::get('/list_photos/', function(){
+            $files = Storage::disk('brands')->files();
+            foreach($files as $key => $file){
+                $files[$key] = Storage::disk('brands')->url($file);
+            }
+            return view('admin.test.list', compact('files'));
+        })->name('admin.test.list_photos');
+        Route::get('/delete_photo/{name}', function($name){
+            Storage::disk('brands')->delete($name);
+            return redirect()->route('admin.test.list_photos');
+        })->name('admin.test.delete_photo');
+    });
 });
 
 
-Route::middleware('guest')->namespace('Admin')->group(function(){
-    Route::get('/login', [AdminLoginController::class, 'getLogin'])->name('admin.login');
-    Route::post('/login', [AdminLoginController::class, 'postLogin'])->name('admin.postlogin');
-});

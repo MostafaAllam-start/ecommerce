@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\MainCategory;
+use App\Models\Category;
 use App\Observers\MainCategoryObserver;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,6 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        MainCategory::observe(MainCategoryObserver::class);
+        Category::observe(MainCategoryObserver::class);
     }
 }

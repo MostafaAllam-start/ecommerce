@@ -11,7 +11,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية</a>
                                 </li>
-                                <li class="breadcrumb-item active"> اللغات
+                                <li class="breadcrumb-item is_active"> اللغات
                                 </li>
                             </ol>
                         </div>
@@ -73,7 +73,7 @@
 
 
                                                             <a href="{{route('admin.languages.change_status', $language->id)}}"
-                                                               class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">@if($language->active) إلغاء التفعيل@else     تفعيل@endif  </a>
+                                                               class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">@if($language->is_active) إلغاء التفعيل@else     تفعيل@endif  </a>
 
 
 

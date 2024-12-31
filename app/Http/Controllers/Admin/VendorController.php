@@ -6,15 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
 use App\Models\Vendor;
 use App\Notifications\NewVendorMailNotification;
-use Illuminate\Http\Request;
-use App\Models\MainCategory;
+use App\Models\Category;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 
 class VendorController extends Controller
 {
-    use \App\traits\FileUpload;
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +27,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        $categories = MainCategory::selection()->where('translation_lang', get_default_language())->get();
+        $categories = Category::selection()->parent()->get();
         return view('admin.vendors.create', compact('categories'));
     }
 
@@ -42,21 +40,11 @@ class VendorController extends Controller
         try{
             // Saving the logo image
             if($request->hasFile('logo')){
-                $logo_name = $this->uploadFile($validated_data['logo'], 'assets/images/vendors/logos/');
+                $logo_name = saveFile($validated_data['logo'], 'vendors');
+                $validated_data['logo'] = $logo_name;
             }
             // Saving the vendor data
-            $vendor = Vendor::create([
-                'logo' => $logo_name,
-                'name' => $validated_data['name'],
-                'email' => $validated_data['email'],
-                'password' => $validated_data['password'],
-                'phone' => $validated_data['phone'],
-                'category_id' => $validated_data['category_id'],
-                'address' => $validated_data['address'],
-                'longitude' => $validated_data['longitude'],
-                'latitude' => $validated_data['latitude'],
-                'active' => $validated_data['active']
-            ]);
+            $vendor = Vendor::create($validated_data);
             Notification::send($vendor, new NewVendorMailNotification($vendor));
             return redirect()->route('admin.vendors')->with(['success' => 'تم اضافة المتجر بنجاح.']);
         }
@@ -71,7 +59,7 @@ class VendorController extends Controller
     public function edit($id)
     {
         $vendor = Vendor::with('category')->findOrFail($id);
-        $categories = MainCategory::selection()->where('translation_lang', get_default_language())->get();
+        $categories = Category::selection()->parent()->get();
         return view('admin.vendors.edit', compact('vendor'), compact('categories'));
     }
 
@@ -88,11 +76,13 @@ class VendorController extends Controller
             // upload new logo if exists
             if(Arr::exists($validated_data, 'logo')){
                 //delete the old logo
-                if($vendor->logo && file_exists(public_path('assets/images/vendors/logos/' . $vendor->logo))){
-                    unlink(public_path('assets/images/vendors/logos/' . $vendor->logo));
+                $logo = Str::after($vendor->logo, 'vendors');
+                if($vendor->logo && fileExists($logo, 'vendors')){
+
+                    deleteFile($logo, 'vendors');
                 }
                 // upload the new logo
-                $new_logo = $this->uploadFile($validated_data['logo'], 'assets/images/vendors/logos/');
+                $new_logo = saveFile($validated_data['logo'], 'vendors');
                 $validated_data['logo'] = $new_logo;
             }
             // update password if exists
@@ -121,9 +111,9 @@ class VendorController extends Controller
         //get the element
         $vendor = Vendor::findOrFail($id);
         //remove the logo from the storage
-        if($vendor->logo && file_exists(public_path('assets/images/vendors/logos/' . $vendor->logo))){
-            unlink(public_path('assets/images/vendors/logos/' . $vendor->logo));
-        }
+        $logo = Str::after($vendor->logo, 'vendors');
+        if($vendor->logo && fileExists($logo, 'vendors'))
+            deleteFile($logo, 'vendors');
         $vendor->delete();
         return redirect()->route('admin.vendors')->with(['success' => 'تم حذف المتجر بنجاح']);
 

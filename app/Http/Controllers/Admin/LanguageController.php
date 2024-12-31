@@ -7,11 +7,10 @@ use App\Http\Requests\LanguageRequest;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
-define('PAGINATION_COUNT', 10);
 class LanguageController extends Controller
 {
     public function index(){
-        $languages = Language::selection()->paginate(PAGINATION_COUNT);
+        $languages = Language::selection()->paginate(env('PAGINATION_SIZE'));
         return view('admin.languages.index', compact('languages'));
     }
 

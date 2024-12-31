@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Language extends Model
 {
     protected $table = 'languages';
-    protected $fillable = ['abbr', 'name','direction', 'active'];
+    protected $fillable = ['abbr', 'name','direction', 'is_active'];
     public $timestamps = true;
 
     public function scopeSelection($query){
-        return $query->select('id', 'abbr', 'name', 'native', 'direction', 'active');
+        return $query->select('id', 'abbr', 'name', 'native', 'direction', 'is_active');
     }
     public function scopeActive($query){
-        return $query->where('active', 1);
+        return $query->where('is_active', 1);
     }
 
     public function getActive(): string{
-        return $this->active? 'مفعل' : 'غير مفعل';
+        return $this->is_active? 'مفعل' : 'غير مفعل';
     }
 }

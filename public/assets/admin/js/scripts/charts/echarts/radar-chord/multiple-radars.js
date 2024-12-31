@@ -59,7 +59,7 @@ $(window).on("load", function(){
                 polar : [
                     {
                         indicator : [
-                            {text : 'Brands', max  : 100},
+                            {text : 'Brand', max  : 100},
                             {text : 'Content', max  : 100},
                             {text : 'Availability', max  : 100},
                             {text : 'Features', max  : 100}

@@ -13,7 +13,7 @@
                                 </li>
                                 <li class="breadcrumb-item"><a href="{{route('admin.languages')}}"> أللغات </a>
                                 </li>
-                                <li class="breadcrumb-item active">إضافة لغة
+                                <li class="breadcrumb-item is_active">إضافة لغة
                                 </li>
                             </ol>
                         </div>
@@ -102,15 +102,15 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group mt-1">
-                                                            <input type="hidden" value="0" name="active">
-                                                            <input type="checkbox"  value="1" name="active"
+                                                            <input type="hidden" value="0" name="is_active">
+                                                            <input type="checkbox"  value="1" name="is_active"
                                                                    id="switcheryColor4"
                                                                    class="switchery" data-color="success"
                                                                    checked/>
                                                             <label for="switcheryColor4"
                                                                    class="card-title ml-1">الحالة </label>
 
-                                                            @error('active')
+                                                            @error('is_active')
                                                             <span class="text-danger">{{$message}}</span>
                                                             @enderror
                                                         </div>

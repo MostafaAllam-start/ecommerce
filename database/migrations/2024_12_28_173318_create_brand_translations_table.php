@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('languages', function (Blueprint $table) {
+        Schema::create('brand_translations', function (Blueprint $table) {
             $table->id();
-            $table->string('abbr');
+            $table->unsignedBigInteger('brand_id');
             $table->string('name');
-            $table->string('locale')->nullable();
-            $table->string('native')->nullable();
-            $table->enum('direction', ['ltr', 'rtl'])->default('rtl');
-            $table->boolean('is_active')->default(true);
+            $table->string('locale');
+            $table->unique(['brand_id', 'locale']);
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('languages');
+        Schema::dropIfExists('brand_translations');
     }
 };

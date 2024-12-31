@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('languages', function (Blueprint $table) {
+        Schema::create('category_translations', function (Blueprint $table) {
             $table->id();
-            $table->string('abbr');
+            $table->string('locale');
             $table->string('name');
-            $table->string('locale')->nullable();
-            $table->string('native')->nullable();
-            $table->enum('direction', ['ltr', 'rtl'])->default('rtl');
-            $table->boolean('is_active')->default(true);
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
+            $table->unique(['category_id', 'locale']);
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('languages');
+        Schema::dropIfExists('category_translations');
     }
 };

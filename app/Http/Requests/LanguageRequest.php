@@ -25,7 +25,7 @@ class LanguageRequest extends FormRequest
             'name' => 'required|string|max:255',
             'abbr' => 'required|string|max:255',
             'direction' => 'required|in:rtl,ltr',
-            'active' => 'required|  in:0,1',
+            'is_active' => 'required|  in:0,1',
         ];
     }
     public function messages(): array
@@ -39,7 +39,7 @@ class LanguageRequest extends FormRequest
             'abbr.max' => 'اختصار اللغة يجب الا يزيد عن 255 حرف',
             'direction.required' => 'اتجاه اللغة مطلوب.',
             'direction.in' => 'اتجاه اللغة يجب ان يكون rtl او ltr .',
-            'active.required' => 'هذا الحقل مطلوب.'
+            'is_active.required' => 'هذا الحقل مطلوب.'
         ];
     }
 }

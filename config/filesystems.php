@@ -44,20 +44,30 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-        'maincagtegories' =>[
+
+        'brands' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/assets/images/maincagtegories'),
-            'url' => env('APP_URL').'/storage/assets/images/maincagtegories',
+            'root' => storage_path('app/public/images/brands'),
+            'url' => env('APP_URL').'/storage/images/brands',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'categories' =>[
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/categories'),
+            'url' => env('APP_URL').'/storage/images/categories',
             'visibility' => 'public',
             'throw' => false,
         ],
         'vendors' =>[
             'driver' => 'local',
-            'root' => storage_path('app/public/assets/images/vendor'),
-            'url' => env('APP_URL').'/storage/assets/images/vendor',
+            'root' => storage_path('app/public/images/vendors'),
+            'url' => env('APP_URL').'/storage/images/vendors',
             'visibility' => 'public',
             'throw' => false,
         ],
+
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

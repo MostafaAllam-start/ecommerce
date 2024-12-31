@@ -10,7 +10,7 @@ class Vendor extends Model
 {
     use Notifiable;
     protected $table = 'vendors';
-    protected $fillable = ['name', 'email','password', 'phone', 'address', 'logo', 'category_id', 'active'];
+    protected $fillable = ['name', 'email','password', 'phone', 'address', 'logo', 'category_id', 'is_active'];
     protected $hidden = ['created_at', 'updated_at', 'category_id', 'password'];
 
     protected function casts(): array
@@ -20,21 +20,21 @@ class Vendor extends Model
         ];
     }
     public function category(){
-        return $this->belongsTo(MainCategory::class, 'category_id', 'id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     public function scopeActive($query){
-        return $query->where('active', 1);
+        return $query->where('is_active', 1);
     }
     public function scopeSelection($query){
-        return $query->select('id', 'name', 'email', 'phone', 'address', 'logo', 'category_id', 'active');
+        return $query->select('id', 'name', 'email', 'phone', 'address', 'logo', 'category_id', 'is_active');
     }
-    public function getLogo(){
-        return asset('assets/images/vendors/logos/'.$this->logo);
+    public function getLogoAttribute($val){
+        return ($val !== null) ? getFilePublicURL($val, 'vendors'): "";
     }
 
     public function getActive(){
-        return $this->active ? 'مفعل' : 'غير مفعل';
+        return $this->is_active ? 'مفعل' : 'غير مفعل';
     }
 
 

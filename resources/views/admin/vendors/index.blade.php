@@ -11,7 +11,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية</a>
                                 </li>
-                                <li class="breadcrumb-item active">ألمتاجر</li>
+                                <li class="breadcrumb-item is_active">ألمتاجر</li>
                             </ol>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                                     <tr>
                                                         <td>{{$vendor -> name}}</td>
                                                         <td><img style="width: 150px; height: 100px;"
-                                                                 src="{{$vendor -> 	getLogo()}}"></td>
+                                                                 src="{{$vendor -> logo}}"></td>
 
                                                         <td>{{$vendor -> phone}}</td>
                                                         <td> @if($vendor -> category != null){{$vendor -> 	category -> name}}@endif</td>
@@ -79,7 +79,7 @@
 
 
                                                                 <a href="{{route('admin.vendors.change_status', $vendor->id)}}"
-                                                                   class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">@if($vendor->active) إلغاء التفعيل@else     تفعيل@endif  </a>
+                                                                   class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">@if($vendor->is_active) إلغاء التفعيل@else     تفعيل@endif  </a>
 
 
                                                             </div>
