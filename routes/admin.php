@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\VendorController;
 use App\Models\Category;
 use App\Models\SubCategory;
@@ -63,17 +66,38 @@ Route::middleware('admin')->group(function() {
         Route::get('/change_status/{id}', [BrandController::class, 'changeStatus'])->name('admin.brands.change_status');
     });
 
+    Route::prefix('products')->group(function(){
+        Route::get('/', [ProductController::class, 'index'])->name('admin.products');
+        Route::get('/create', [ProductController::class, 'create'])->name('admin.products.create');
+        Route::post('/store', [ProductController::class, 'store'])->name('admin.products.store');
+        Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('admin.products.edit');
+        Route::post('/update/{id}', [ProductController::class, 'update'])->name('admin.products.update');
+        Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete');
+        Route::get('/change_status/{id}', [ProductController::class, 'changeStatus'])->name('admin.products.change_status');
+    });
+
+    Route::prefix('tags')->group(function(){
+        Route::get('/', [TagController::class, 'index'])->name('admin.tags');
+        Route::get('/create', [TagController::class, 'create'])->name('admin.tags.create');
+        Route::post('/store', [TagController::class, 'store'])->name('admin.tags.store');
+        Route::get('/edit/{id}', [TagController::class, 'edit'])->name('admin.tags.edit');
+        Route::post('/update/{id}', [TagController::class, 'update'])->name('admin.tags.update');
+        Route::get('/delete/{id}', [TagController::class, 'delete'])->name('admin.tags.delete');
+        Route::get('/change_status/{id}', [TagController::class, 'changeStatus'])->name('admin.tags.change_status');
+    });
+
+    Route::prefix('attributes')->group(function(){
+        Route::get('/', [AttributeController::class, 'index'])->name('admin.attributes');
+        Route::get('/create', [AttributeController::class, 'create'])->name('admin.attributes.create');
+        Route::post('/store', [AttributeController::class, 'store'])->name('admin.attributes.store');
+        Route::get('/edit/{id}', [AttributeController::class, 'edit'])->name('admin.attributes.edit');
+        Route::post('/update/{id}', [AttributeController::class, 'update'])->name('admin.attributes.update');
+        Route::get('/delete/{id}', [AttributeController::class, 'delete'])->name('admin.attributes.delete');
+        Route::get('/change_status/{id}', [AttributeController::class, 'changeStatus'])->name('admin.attributes.change_status');
+    });
+
+
     Route::prefix('test')->group(function(){
-        Route::get('/sub_categories/', function(){
-            $categories = Category::findOrFail(4);
-            return $categories->subCategories;
-        });
-        Route::get('/categories', function(){
-            $sub_category = SubCategory::findOrFail(1);
-            return $sub_category->mainCategory;
-        });
-
-
         //handling file upload by using custom disks
         Route::get('/upload_photo/', function(){
             return view('admin.test.create');
