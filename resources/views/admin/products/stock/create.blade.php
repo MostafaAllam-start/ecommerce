@@ -43,103 +43,105 @@
                                 @include('dashboard.includes.alerts.errors')
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <form class="form"
-                                              action="{{route('admin.products.stock.store')}}"
-                                              method="POST"
-                                              enctype="multipart/form-data">
-                                            @csrf
+                                        @isset($product)
+                                            <form class="form"
+                                                  action="{{route('admin.products.stock.store')}}"
+                                                  method="POST"
+                                                  enctype="multipart/form-data">
+                                                @csrf
 
-                                            <input type="hidden" name="product_id" value="{{$id}}">
-                                            <div class="form-body">
+                                                <input type="hidden" name="product_id" value="{{$id}}">
+                                                <div class="form-body">
 
-                                                <h4 class="form-section"><i class="ft-home"></i> اداره المستودع   </h4>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1"> كود  المنتج
-                                                            </label>
-                                                            <input type="text" id="sku"
-                                                                   class="form-control"
-                                                                   placeholder="  "
-                                                                   value="{{old('sku')}}"
+                                                    <h4 class="form-section"><i class="ft-home"></i> اداره المستودع   </h4>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="projectinput1"> كود  المنتج
+                                                                </label>
+                                                                <input type="text" id="sku"
+                                                                       class="form-control"
+                                                                       placeholder="  "
+                                                                       value="@if(old('sku')){{old('sku')}} @else {{$product->sku}} @endif"
                                                                    name="sku">
-                                                            @error("sku")
-                                                            <span class="text-danger">{{$message}}</span>
-                                                            @enderror
+                                                                @error("sku")
+                                                                <span class="text-danger">{{$message}}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="projectinput1">تتبع المستودع
+                                                                </label>
+                                                                <select name="manage_stock" class="select2 form-control" id="manageStock">
+                                                                    <optgroup label="من فضلك أختر النوع ">
+                                                                        <option value="1" @if((!old('manage_stock') && $product->manage_stock == '1') || old('manage_stock') == '1')selected @endif>اتاحة التتبع</option>
+                                                                        <option value="0" @if((!old('manage_stock') && $product->manage_stock == '0') || old('manage_stock') == '0')selected @endif>عدم اتاحه التتبع</option>
+                                                                    </optgroup>
+                                                                </select>
+                                                                @error('manage_stock')
+                                                                <span class="text-danger"> {{$message}}</span>
+                                                                @enderror
+                                                            </div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1">تتبع المستودع
-                                                            </label>
-                                                            <select name="manage_stock" class="select2 form-control" id="manageStock">
-                                                                <optgroup label="من فضلك أختر النوع ">
-                                                                    <option value="1">اتاحة التتبع</option>
-                                                                    <option value="0" selected>عدم اتاحه التتبع</option>
-                                                                </optgroup>
-                                                            </select>
-                                                            @error('manage_stock')
-                                                            <span class="text-danger"> {{$message}}</span>
-                                                            @enderror
+                                                    <div class="row">
+                                                        <!-- QTY  -->
+
+
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="projectinput1">حالة المنتج
+                                                                </label>
+                                                                <select name="in_stock" class="select2 form-control" >
+                                                                    <optgroup label="من فضلك أختر  ">
+                                                                        <option value="1" @if((!old('in_stock') && $product->in_stock == '1') || old('in_stock') == '1')selected @endif>متاح</option>
+                                                                        <option value="0" @if((!old('in_stock') && $product->in_stock == '0') || old('in_stock') == '0')selected @endif>غير متاح </option>
+                                                                    </optgroup>
+                                                                </select>
+                                                                @error('in_stock')
+                                                                <span class="text-danger"> {{$message}}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-6" style="display:none"  id="qtyDiv">
+                                                            <div class="form-group">
+                                                                <label for="projectinput1">الكمية
+                                                                </label><br>
+                                                                <input type="text" id="sku"
+                                                                       class="form-control"
+                                                                       placeholder="  "
+                                                                       value="@if(old('qty')){{old('qty')}} @else {{$product->qty}} @endif"
+                                                                       name="qty">
+                                                                @error("qty")
+                                                                <span class="text-danger">{{$message}}</span>
+                                                                @enderror
+                                                            </div>
                                                         </div>
                                                     </div>
+
+
+
+
                                                 </div>
 
-                                                <div class="row">
-                                                  <!-- QTY  -->
 
-
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1">حالة المنتج
-                                                            </label>
-                                                            <select name="in_stock" class="select2 form-control" >
-                                                                <optgroup label="من فضلك أختر  ">
-                                                                    <option value="1">متاح</option>
-                                                                    <option value="0">غير متاح </option>
-                                                                </optgroup>
-                                                            </select>
-                                                            @error('in_stock')
-                                                            <span class="text-danger"> {{$message}}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="col-md-6" style="display:none"  id="qtyDiv">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1">الكمية
-                                                            </label>
-                                                            <input type="text" id="sku"
-                                                                   class="form-control"
-                                                                   placeholder="  "
-                                                                   value="{{old('qty')}}"
-                                                                   name="qty">
-                                                            @error("qty")
-                                                            <span class="text-danger">{{$message}}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
+                                                <div class="form-actions">
+                                                    <button type="button" class="btn btn-warning mr-1"
+                                                            onclick="history.back();">
+                                                        <i class="ft-x"></i> تراجع
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="la la-check-square-o"></i> تحديث
+                                                    </button>
                                                 </div>
-
-
-
-
-                                            </div>
-
-
-                                            <div class="form-actions">
-                                                <button type="button" class="btn btn-warning mr-1"
-                                                        onclick="history.back();">
-                                                    <i class="ft-x"></i> تراجع
-                                                </button>
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> تحديث
-                                                </button>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        @endisset
 
                                     </div>
                                 </div>
@@ -162,7 +164,11 @@
                 $('#qtyDiv').show();
            }else{
                $('#qtyDiv').hide();
+               $('#qtyDiv').val(null);
            }
         });
+        if($('#manageStock').val() == 1){
+            $('#qtyDiv').show();
+        }
     </script>
     @stop

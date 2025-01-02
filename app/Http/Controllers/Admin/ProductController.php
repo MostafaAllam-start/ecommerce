@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PriceRequest;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\StockRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Tag;
@@ -88,11 +89,23 @@ class ProductController extends Controller
     public function storeImages(){
         //
     }
-
-    public function showStock($id){
+    public function storeImagesInDB(Request $request){
         //
     }
-    public function storeStock(){
-        //
+
+    public function showStock($id){
+        $product = Product::findOrFail($id);
+        return view('admin.products.stock.create', compact('product'))->with('id', $id);
+    }
+    public function storeStock(StockRequest $request){
+        $validated_data = $request->validated();
+        try{
+            $product = Product::findOrFail($validated_data['product_id']);
+            $product->update(Arr::except($validated_data, ['product_id']));
+            return redirect()->route('admin.products')->with('success', 'تم التعديل بنجاح');
+        }
+        catch(\Exception $exception){
+            return redirect()->back()->with('error', 'حدث خطأ حاول مرة أخري');
+        }
     }
 }

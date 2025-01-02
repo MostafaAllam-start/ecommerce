@@ -134,7 +134,7 @@
                 // previewsContainer: "#dpz-btn-select-files", // Define the container to display the previews
                 init: function () {
 
-                        @if(isset($event) && $event->document)
+                    @if(isset($event) && $event->document)
                     var files =
                     {!! json_encode($event->document) !!}
                         for (var i in files) {

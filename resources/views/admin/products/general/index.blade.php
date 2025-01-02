@@ -92,7 +92,6 @@
                             </div>
                         </div>
                     </div>
-                    {!! $products -> links() !!}
                 </section>
             </div>
         </div>
