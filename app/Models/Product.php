@@ -87,23 +87,26 @@ class Product extends Model
 
 
 
-    public function brand():BelongsTo
-    {
-        return $this->belongsTo(Brand::class)->withDefault();
-    }
 
-    public function categories():belongsToMany
+    public function scopeGetPrice($query)
     {
-        return $this->belongsToMany(Category::class, 'product_categories');
+        return $query -> select('price', 'special_price', 'special_price_type', 'special_price_start', 'special_price_end');
     }
 
     public function tags():MorphToMany
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
-
+    public function brand():BelongsTo
+    {
+        return $this->belongsTo(Brand::class)->withDefault();
+    }
+    public function categories():BelongsToMany
+    {
+        return $this->belongsToMany(Category::class, 'products_categories', 'product_id', 'category_id');
+    }
     public function images():HasMany
     {
-        return $this->hasMany(ProductImage::class, 'product_id');
+        return $this->hasMany(ProductImage::class);
     }
 }

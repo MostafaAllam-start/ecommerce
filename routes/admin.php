@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OptionController;
+use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\VendorController;
@@ -75,6 +76,19 @@ Route::middleware('admin')->group(function() {
         Route::post('/update/{id}', [ProductController::class, 'update'])->name('admin.products.update');
         Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete');
         Route::get('/change_status/{id}', [ProductController::class, 'changeStatus'])->name('admin.products.change_status');
+
+
+        Route::get('price/{id}', [ProductController::class, 'showPrice'])->name('admin.products.price');
+        Route::post('price/store', [ProductController::class, 'storePrice'])->name('admin.products.price.store');
+
+
+        Route::get('images/{id}', [ProductController::class, 'showImage'])->name('admin.products.images');
+        Route::post('images/store', [ProductController::class, 'storeImage'])->name('admin.products.images.store');
+
+
+        Route::get('stock/{id}', [ProductController::class, 'showStock'])->name('admin.products.stock');
+        Route::post('stock/store', [ProductController::class, 'storeStock'])->name('admin.products.stock.store');
+
     });
 
     Route::prefix('tags')->group(function(){

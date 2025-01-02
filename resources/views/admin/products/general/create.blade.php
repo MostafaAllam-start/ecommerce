@@ -135,7 +135,7 @@
                                                                     @endif
                                                                 </optgroup>
                                                             </select>
-                                                            @error('categories.0')
+                                                            @error('categories')
                                                             <span class="text-danger"> {{$message}}</span>
                                                             @enderror
                                                         </div>
@@ -208,7 +208,7 @@
                                                     <i class="ft-x"></i> تراجع
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> تحديث
+                                                    <i class="la la-check-square-o"></i> إضافة
                                                 </button>
                                             </div>
                                         </form>
