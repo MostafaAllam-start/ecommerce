@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\VendorController;
@@ -94,6 +95,16 @@ Route::middleware('admin')->group(function() {
         Route::post('/update/{id}', [AttributeController::class, 'update'])->name('admin.attributes.update');
         Route::get('/delete/{id}', [AttributeController::class, 'delete'])->name('admin.attributes.delete');
         Route::get('/change_status/{id}', [AttributeController::class, 'changeStatus'])->name('admin.attributes.change_status');
+    });
+
+    Route::prefix('options')->group(function(){
+        Route::get('/', [OptionController::class, 'index'])->name('admin.options');
+        Route::get('/create', [OptionController::class, 'create'])->name('admin.options.create');
+        Route::post('/store', [OptionController::class, 'store'])->name('admin.options.store');
+        Route::get('/edit/{id}', [OptionController::class, 'edit'])->name('admin.options.edit');
+        Route::post('/update/{id}', [OptionController::class, 'update'])->name('admin.options.update');
+        Route::get('/delete/{id}', [OptionController::class, 'delete'])->name('admin.options.delete');
+        Route::get('/change_status/{id}', [OptionController::class, 'changeStatus'])->name('admin.options.change_status');
     });
 
 
