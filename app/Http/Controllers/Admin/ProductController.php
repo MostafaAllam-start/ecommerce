@@ -8,6 +8,7 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Requests\StockRequest;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -82,17 +83,52 @@ class ProductController extends Controller
     }
 
 
-    public function showImages($id){
-        //
+    public function uploadImages($id){
+        return view('admin.products.images.create', compact('id'));
     }
 
-    public function storeImages(){
-        //
+    public function saveImages(Request $request){
+        $file = $request->file('dzfile');
+        $filename = saveFile($file, 'products');
+        return response()->json([
+            'name' => $filename,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
     }
-    public function storeImagesInDB(Request $request){
-        //
-    }
+    public function storeImages(Request $request)
+    {
+        try {
+            // save dropzone images
+            if ($request->has('document') && count($request->document) > 0) {
+                foreach ($request->document as $image) {
+                    Image::create([
+                        'product_id' => $request->product_id,
+                        'image' => $image,
+                    ]);
+                }
+            }
 
+            return redirect()->route('admin.products')->with(['success' => 'تم التحديث بنجاح']);
+
+        }catch(\Exception $ex){
+            //delete the uploaded images
+            if ($request->has('document') && count($request->document) > 0) {
+                foreach ($request->document as $image) {
+                    if($request->has('name') &&fileExists($request->name, 'products'))
+                        deleteFile($image, 'products');
+                }
+            }
+            return redirect()->back()->with('error', 'An error occurred while uploading images');
+        }
+    }
+    public function deleteImage(Request $request){
+        if($request->has('name') &&fileExists($request->name, 'products'))
+            deleteFile($request->name, 'products');
+        return response()->json([
+            'success' => true,
+            'message' => 'the image was successfully deleted',
+        ]);
+    }
     public function showStock($id){
         $product = Product::findOrFail($id);
         return view('admin.products.stock.create', compact('product'))->with('id', $id);

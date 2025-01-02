@@ -82,8 +82,10 @@ Route::middleware('admin')->group(function() {
         Route::post('price/store', [ProductController::class, 'storePrice'])->name('admin.products.price.store');
 
 
-        Route::get('images/{id}', [ProductController::class, 'showImage'])->name('admin.products.images');
-        Route::post('images/store', [ProductController::class, 'storeImage'])->name('admin.products.images.store');
+        Route::get('images/{id}', [ProductController::class, 'uploadImages'])->name('admin.products.images');
+        Route::post('images/save', [ProductController::class, 'saveImages'])->name('admin.products.images.save');
+        Route::post('images/delete', [ProductController::class, 'deleteImage'])->name('admin.products.images.delete');
+        Route::post('images/store', [ProductController::class, 'storeImages'])->name('admin.products.images.store');
 
 
         Route::get('stock/{id}', [ProductController::class, 'showStock'])->name('admin.products.stock');
