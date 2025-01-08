@@ -1,18 +1,28 @@
 <div class="header-bottom hidden-sm-down">
     <div class="container">
         <div class="row d-flex align-items-center">
-            <div class="contentsticky_verticalmenu verticalmenu-main col-lg-3 col-md-1 d-flex" data-textshowmore="Show More" data-textless="Hide" data-desktop_item="4">
+            <div class="contentsticky_verticalmenu verticalmenu-main col-lg-3 col-md-1 d-flex"   data-textshowmore="Show More" data-textless="Hide" data-desktop_item="4">
                 <div class="toggle-nav d-flex align-items-center justify-content-start">
                     <span class="btnov-lines"></span>
                     <span>Shop By Categories</span>
                 </div>
                 <div class="verticalmenu-content has-showmore show">
 
-                    <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novverticalmenu/views/templates/hook/novverticalmenu.tpl -->
                     <div id="_desktop_verticalmenu" class="nov-verticalmenu block" data-count_showmore="6">
                         <div class="box-content block_content">
                             <div id="verticalmenu" class="verticalmenu" role="navigation">
-                                <ul class="menu level1"><li class="item  parent" ><a href="#" title="Laptops &amp; Accessories"><i class="hasicon nov-icon" style="background:url('http://demo.bestprestashoptheme.com/savemart/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/laptop.png') no-repeat scroll center center;"></i>Laptops &amp; Accessories</a><span class="show-sub fa-active-sub"></span><span class="menu-sub-title">Dell. HP, Macbook, Alienware and etc...</span><div class="dropdown-menu" style="width:222px"><ul><li class="item " ><a href="#" title="Macbook Pro">Macbook Pro</a></li>
+                                <ul class="menu level1">
+                                    <li class="item  parent" >
+                                        <a href="#" title="Laptops &amp; Accessories">
+                                            <i class="hasicon nov-icon" style="background:url('{{asset("assets/front/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/laptop.png")}}') no-repeat scroll center center;">
+                                            </i>
+                                            Laptops &amp; Accessories
+                                        </a>
+                                        <span class="show-sub fa-active-sub"></span>
+                                        <span class="menu-sub-title">Dell. HP, Macbook, Alienware and etc...</span>
+                                        <div class="dropdown-menu" style="width:222px">
+                                            <ul>
+                                                <li class="item " ><a href="#" title="Macbook Pro">Macbook Pro</a></li>
                                                 <li class="item  parent" ><a href="#" title="Laptop Thinkpad">Laptop Thinkpad</a><span class="show-sub fa-active-sub"></span><div class="dropdown-menu" ><ul><li class="item " ><a href="#" title="Aliquam lobortis">Aliquam lobortis</a></li>
                                                             <li class="item " ><a href="#" title="Duis Reprehenderit">Duis Reprehenderit</a></li>
                                                             <li class="item " ><a href="#" title="Voluptate">Voluptate</a></li>
@@ -30,7 +40,7 @@
                                                 <li class="item " ><a href="#" title="Dell Inspiron">Dell Inspiron</a></li>
                                                 <li class="item " ><a href="#" title="Trackpad">Trackpad</a></li>
                                             </ul></div></li>
-                                    <li class="item  parent group" ><a href="#" title="Electronics"><i class="hasicon nov-icon" style="background:url('http://demo.bestprestashoptheme.com/savemart/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/Electronic.png') no-repeat scroll center center;"></i>Electronics</a><span class="show-sub fa-active-sub"></span><span class="menu-sub-title">Blender , iron, Vacuum cleaner ...</span><div class="dropdown-menu" style="width:922px"><ul><li class="item group-list-category" ><div class="menu-content"><div class="row">
+                                    <li class="item  parent group" ><a href="#" title="Electronics"><i class="hasicon nov-icon" style="background:url('assets/front/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/Electronic.png') no-repeat scroll center center;"></i>Electronics</a><span class="show-sub fa-active-sub"></span><span class="menu-sub-title">Blender , iron, Vacuum cleaner ...</span><div class="dropdown-menu" style="width:922px"><ul><li class="item group-list-category" ><div class="menu-content"><div class="row">
                                                             <div class="col-lg-3 col-12">
                                                                 <p class="title-category">Houseware</p>
                                                                 <ul>
@@ -62,7 +72,7 @@
                                                                 </ul>
                                                             </div>
                                                         </div></div></li></ul></div></li>
-                                    <li class="item  parent group" ><a href="#" title="Audio &amp; Sound Devices"><i class="hasicon nov-icon" style="background:url('http://demo.bestprestashoptheme.com/savemart/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/audio-sound.png') no-repeat scroll center center;"></i>Audio &amp; Sound Devices</a><span class="show-sub fa-active-sub"></span><span class="menu-sub-title">Speaker, Headphone, Soundcard ...</span><div class="dropdown-menu" style="width:922px"><ul><li class="item group-list-category-1" ><div class="menu-content"><div class="row">
+                                    <li class="item  parent group" ><a href="#" title="Audio &amp; Sound Devices"><i class="hasicon nov-icon" style="background:url({{asset('assets/front/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/audio-sound.png')}}) no-repeat scroll center center;"></i>Audio &amp; Sound Devices</a><span class="show-sub fa-active-sub')}}"></span><span class="menu-sub-title">Speaker, Headphone, Soundcard ...</span><div class="dropdown-menu" style="width:922px"><ul><li class="item group-list-category-1" ><div class="menu-content"><div class="row">
                                                             <div class="col-lg-3 col-12">
                                                                 <p class="title-category">Speaker</p>
                                                                 <ul>
@@ -106,7 +116,7 @@
                                                                 </ul>
                                                             </div>
                                                         </div></div></li></ul></div></li>
-                                    <li class="item  parent group" ><a href="#" title="Smartphone &amp; Tablets"><i class="hasicon nov-icon" style="background:url('http://demo.bestprestashoptheme.com/savemart/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/tablet.png') no-repeat scroll center center;"></i>Smartphone &amp; Tablets</a><span class="show-sub fa-active-sub"></span><span class="menu-sub-title">Iphone, OPPO, SamSung, SONY ...</span><div class="dropdown-menu" style="width:922px"><ul><li class="item group-list-category-2" ><div class="menu-content"><div class="row">
+                                    <li class="item  parent group" ><a href="#" title="Smartphone &amp; Tablets"><i class="hasicon nov-icon" style="background:url('assets/front/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/tablet.png') no-repeat scroll center center;"></i>Smartphone &amp; Tablets</a><span class="show-sub fa-active-sub"></span><span class="menu-sub-title">Iphone, OPPO, SamSung, SONY ...</span><div class="dropdown-menu" style="width:922px"><ul><li class="item group-list-category-2" ><div class="menu-content"><div class="row">
                                                             <div class="col-lg-3 col-12">
                                                                 <p class="title-category">IPhone</p>
                                                                 <ul>
@@ -141,10 +151,10 @@
                                                                 </ul>
                                                             </div>
                                                         </div></div></li></ul></div></li>
-                                    <li class="item " ><a href="#" title="Gaming Gear"><i class="hasicon nov-icon" style="background:url('http://demo.bestprestashoptheme.com/savemart/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/game.png') no-repeat scroll center center;"></i>Gaming Gear</a><span class="menu-sub-title">Mouse, Headphone, Console ...</span></li>
-                                    <li class="item " ><a href="#" title="Smart Watches "><i class="hasicon nov-icon" style="background:url('http://demo.bestprestashoptheme.com/savemart/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/smart-watch.png') no-repeat scroll center center;"></i>Smart Watches </a><span class="menu-sub-title">Lorem ipsum dolor sit amet quam</span></li>
-                                    <li class="item " ><a href="#" title="Camera"><i class="hasicon nov-icon" style="background:url('http://demo.bestprestashoptheme.com/savemart/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/camera.png') no-repeat scroll center center;"></i>Camera</a><span class="menu-sub-title">Lorem ipsum dolor sit amet quam</span></li>
-                                    <li class="item " ><a href="#" title="Monitor &amp; Television"><i class="hasicon nov-icon" style="background:url('http://demo.bestprestashoptheme.com/savemart/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/monitor.png') no-repeat scroll center center;"></i>Monitor &amp; Television</a><span class="menu-sub-title">Sony BRAVIA, SamSung, TV 4K ...</span></li>
+                                    <li class="item " ><a href="#" title="Gaming Gear"><i class="hasicon nov-icon" style="background:url('assets/front/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/game.png') no-repeat scroll center center;"></i>Gaming Gear</a><span class="menu-sub-title">Mouse, Headphone, Console ...</span></li>
+                                    <li class="item " ><a href="#" title="Smart Watches "><i class="hasicon nov-icon" style="background:url('assets/front/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/smart-watch.png') no-repeat scroll center center;"></i>Smart Watches </a><span class="menu-sub-title">Lorem ipsum dolor sit amet quam</span></li>
+                                    <li class="item " ><a href="#" title="Camera"><i class="hasicon nov-icon" style="background:url('assets/front/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/camera.png') no-repeat scroll center center;"></i>Camera</a><span class="menu-sub-title">Lorem ipsum dolor sit amet quam</span></li>
+                                    <li class="item " ><a href="#" title="Monitor &amp; Television"><i class="hasicon nov-icon" style="background:url('assets/front/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/monitor.png') no-repeat scroll center center;"></i>Monitor &amp; Television</a><span class="menu-sub-title">Sony BRAVIA, SamSung, TV 4K ...</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -198,9 +208,9 @@
                                                                         <li><a href="/savemart/en/index.php?controller=page-not-found">404 Page</a></li>
                                                                         <li><a href="/savemart/index.php?controller=contact">Contact Us Page</a></li>
                                                                         <li><a href="/savemart/index.php?id_cms=4&controller=cms">About Us Page</a></li>
-                                                                    </ul></div></li><li class="item col-md-3 mw-40 html" ><div class="menu-content"><div class="menu-banner-3 text-center"><a href="#"><img class="img-fluid" src="http://images.vinovathemes.com/prestashop_savemart/mega-menu-3.jpg" alt="mega-menu-3.jpg" /></a></div></div></li></ul></div></li>
+                                                                    </ul></div></li><li class="item col-md-3 mw-40 html" ><div class="menu-content"><div class="menu-banner-3 text-center"><a href="#"><img class="img-fluid" src='{{asset("assets/front/img/mega-menu-3.jpg")}}' alt="mega-menu-3.jpg" /></a></div></div></li></ul></div></li>
                                             </ul></div></li>
-                                    <li class="item  group" ><span class="opener"></span><a href="http://demo.bestprestashoptheme.com/savemart/ar/2-الصفحة-الرئيسية" title="Categories"><i class="zmdi zmdi-group"></i>Categories</a><div class="dropdown-menu" ><ul class=""><li class="item container group" ><div class="dropdown-menu" ><ul class=""><li class="item col-lg-3 col-md-3 html" ><span class="menu-title">Laptop</span><div class="menu-content"><ul class="col">
+                                    <li class="item  group" ><span class="opener"></span><a href="savemart/ar/2-الصفحة-الرئيسية" title="Categories"><i class="zmdi zmdi-group"></i>Categories</a><div class="dropdown-menu" ><ul class=""><li class="item container group" ><div class="dropdown-menu" ><ul class=""><li class="item col-lg-3 col-md-3 html" ><span class="menu-title">Laptop</span><div class="menu-content"><ul class="col">
                                                                         <li><a href="#" title="EliteBook">EliteBook</a></li>
                                                                         <li><a href="#" title="Lenovo Yoga">Lenovo Yoga</a></li>
                                                                         <li><a href="#" title="Probook">Probook</a></li>
@@ -230,9 +240,9 @@
                                                                         <li><a href="#" title="Nokia ">Nokia </a></li>
                                                                     </ul></div></li></ul></div></li>
                                                 <li class="item container group" ><div class="dropdown-menu" ><ul class=""><li class="item  html" ><div class="menu-content"><div class="row">
-                                                                        <div class="col-12 col-lg-4 col-md-4 mt-xs-10 text-center"><a href="#"><img class="img-fluid" src="http://images.vinovathemes.com/prestashop_savemart/banner-mega-1.jpg" alt="menu-banner-1" /></a></div>
-                                                                        <div class="col-4 col-lg-4 col-md-4 mt-xs-10 text-center"><a href="#"><img class="img-fluid" src="http://images.vinovathemes.com/prestashop_savemart/banner-mega-2.jpg" alt="menu-banner-2" /></a></div>
-                                                                        <div class="col-4 col-lg-4 col-md-4 mt-xs-10 text-center"><a href="#"><img class="img-fluid" src="http://images.vinovathemes.com/prestashop_savemart/banner-mega-3.jpg" alt="menu-banner-3" /></a></div>
+                                                                        <div class="col-12 col-lg-4 col-md-4 mt-xs-10 text-center"><a href="#"><img class="img-fluid" src=''{{asset("assets/front/banner-mega-1.jpg")}}' alt="menu-banner-1" /></a></div>
+                                                                        <div class="col-4 col-lg-4 col-md-4 mt-xs-10 text-center"><a href="#"><img class="img-fluid" src=''{{asset("assets/front/banner-mega-2.jpg")}}' alt="menu-banner-2" /></a></div>
+                                                                        <div class="col-4 col-lg-4 col-md-4 mt-xs-10 text-center"><a href="#"><img class="img-fluid" src=''{{asset("assets/front/banner-mega-3.jpg")}}' alt="menu-banner-3" /></a></div>
                                                                     </div></div></li></ul></div></li>
                                             </ul></div></li>
                                 </ul>
@@ -255,9 +265,9 @@
                                  data-novadvancedsearch_type="top"
                                  data-instantsearch=""
                                  data-search_ssl=""
-                                 data-link_search_ssl="http://demo.bestprestashoptheme.com/savemart/ar/بحث"
-                                 data-action="http://demo.bestprestashoptheme.com/savemart/ar/module/novadvancedsearch/result">
-                                <form method="get" action="http://demo.bestprestashoptheme.com/savemart/ar/module/novadvancedsearch/result" id="searchbox" class="form-novadvancedsearch">
+                                 data-link_search_ssl="savemart/ar/بحث"
+                                 data-action="savemart/ar/module/novadvancedsearch/result">
+                                <form method="get" action="savemart/ar/module/novadvancedsearch/result" id="searchbox" class="form-novadvancedsearch">
                                     <input type="hidden" name="fc" value="module">
                                     <input type="hidden" name="module" value="novadvancedsearch">
                                     <input type="hidden" name="controller" value="result">

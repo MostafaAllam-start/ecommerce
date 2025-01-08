@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row d-flex align-items-center">
             <div id="_desktop_logo" class="contentsticky_logo d-flex align-items-center justify-content-start col-lg-3 col-md-3">
-                <a href="http://demo.bestprestashoptheme.com/savemart/">
-                    <img class="logo img-fluid" src="/savemart/modules/novthemeconfig/images/logos/logo-1.png" alt="Prestashop_Savemart">
+                <a href="">
+                    <img class="logo img-fluid" src='{{asset("/assets/front/modules/novthemeconfig/images/logos/logo-1.png")}}' alt="Prestashop_Savemart">
                 </a>
             </div>
             <div class="col-lg-9 col-md-9 header-menu d-flex align-items-center justify-content-end">
@@ -18,17 +18,17 @@
                 </div>
                 <div class="contentsticky_group d-flex justify-content-end">
                     <div class="header_link_myaccount">
-                        <a class="login" href="http://demo.bestprestashoptheme.com/savemart/ar/الحساب الشخصي" rel="nofollow" title="تسجيل الدخول إلى حسابك"><i class="header-icon-account"></i></a>
+                        <a class="login" href="/ar/الحساب الشخصي" rel="nofollow" title="تسجيل الدخول إلى حسابك"><i class="header-icon-account"></i></a>
                     </div>
                     <div class="header_link_wishlist">
-                        <a href="http://demo.bestprestashoptheme.com/savemart/ar/module/novblockwishlist/mywishlist" title="My Wishlists">
+                        <a href="/ar/module/novblockwishlist/mywishlist" title="My Wishlists">
                             <i class="header-icon-wishlist"></i>
                         </a>
                     </div>
 
                     <!-- begin module:ps_shoppingcart/ps_shoppingcart.tpl -->
                     <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/ps_shoppingcart/ps_shoppingcart.tpl --><div id="_desktop_cart">
-                        <div class="blockcart cart-preview active" data-refresh-url="//demo.bestprestashoptheme.com/savemart/ar/module/ps_shoppingcart/ajax">
+                        <div class="blockcart cart-preview active" data-refresh-url="savemart/ar/module/ps_shoppingcart/ajax">
                             <div class="header-cart">
                                 <div class="cart-left">
                                     <div class="shopping-cart"><i class="zmdi zmdi-shopping-cart"></i></div>

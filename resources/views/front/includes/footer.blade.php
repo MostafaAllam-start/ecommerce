@@ -75,7 +75,7 @@
                         <div class="nov-html col-xl-4 col-lg-4 col-md-4">
                             <div class="block">
                                 <div class="block_content">
-                                    <p class="logo-footer"><img src="http://images.vinovathemes.com/prestashop_savemart/logo-footer.png" alt="logo" width="167" height="23" /></p>
+                                    <p class="logo-footer"><img src="{{asset('assets/front/img/logo-footer.png')}}" alt="logo" width="167" height="23" /></p>
                                     <div class="data-contact d-flex align-self-stretch">
                                         <div class="title-icon">support<i class="icon-support icon-address"></i></div>
                                         <div class="content-data-contact">
@@ -171,7 +171,7 @@
           </span>
                 </div>
                 <div class="payment-image col-md-6 align-items-center justify-content-md-end justify-content-sm-center d-flex flex-center">
-                    <img class="img-fluid" src="/savemart/modules/novthemeconfig/images/payment-logo-1.png" alt="payment" title="Payment" />
+                    <img class="img-fluid" src='{{asset("/assets/front/modules/novthemeconfig/images/payment-logo-1.png")}}' alt="payment" title="Payment" />
                 </div>
             </div>
         </div>

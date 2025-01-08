@@ -22,7 +22,7 @@ class AttributeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|unique:attribute_translations,name,'.$this->id,
         ];
     }
 }
