@@ -23,6 +23,25 @@
 ## Introduction
 Savemart is E-Commerce web application built using the Laravel framework. This project is designed for building scalable and robust e-commerce platforms, leveraging Laravel's extensive features for development ease and flexibility.
 
+### Admin Dashboard
+The application includes a fully-featured **admin dashboard** for managing the platform. Key functionalities include:
+- Managing products, categories, and inventory.
+- Monitoring sales, orders, and payments.
+- Role-based access control for admins, vendors, and customers.
+- Integrated analytics for sales and performance tracking.
+
+### Multi-Role Support
+The platform provides role-based access and features for:
+- **Admin**: Full control of the platform, including vendor approval, user management, and global settings.
+- **Vendor**: Ability to manage their own products, view orders, and track sales.
+- **User/Customer**: Seamless shopping experience with features like order tracking, wishlists, and secure payments.
+
+### Multi-Language Support
+The platform supports multiple languages out of the box using `mcamara/laravel-localization`. This feature allows:
+- Translating content into various languages for a global audience.
+- Language switching directly in the frontend UI.
+- Easy addition of new translations using JSON or PHP files.
+
 ---
 
 ## Features
