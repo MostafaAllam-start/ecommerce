@@ -1,25 +1,28 @@
 <?php
+
+use App\Models\Category;
 use App\Models\Language;
+use App\Models\Slider;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-if(!function_exists('get_languages'))
+if(!function_exists('getLanguages'))
 {
     /**
      * @return mixed
      */
-    function get_languages()
+    function getLanguages()
     {
         $languages = Language::active()->get();
         return $languages;
     }
 }
-if(!function_exists('get_default_language'))
+if(!function_exists('getDefaultLanguage'))
 {
     /**
      * @return string
      */
-    function get_default_language():string
+    function getDefaultLanguage():string
     {
         return app()->getLocale();
     }
@@ -85,3 +88,22 @@ if(!function_exists('fileExists'))
     }
 }
 
+if(!function_exists('getAllCategories')) {
+    function getAllCategories()
+    {
+        return Category::select('id', 'slug')->parent()->with(['_children' => function ($q){
+            $q->select('id', 'parent_id', 'slug');
+            $q->with(['_children' => function ($q){
+                $q->select('id', 'parent_id', 'slug');
+            }]);
+        }])->get();
+    }
+}
+
+if(!function_exists('getSliders'))
+{
+    function getSliders()
+    {
+        return Slider::get(['image']);
+    }
+}

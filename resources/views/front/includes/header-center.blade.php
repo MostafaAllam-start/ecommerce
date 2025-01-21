@@ -18,10 +18,10 @@
                 </div>
                 <div class="contentsticky_group d-flex justify-content-end">
                     <div class="header_link_myaccount">
-                        <a class="login" href="/ar/الحساب الشخصي" rel="nofollow" title="تسجيل الدخول إلى حسابك"><i class="header-icon-account"></i></a>
+                        <a class="login" href="" rel="nofollow" title="تسجيل الدخول إلى حسابك"><i class="header-icon-account"></i></a>
                     </div>
                     <div class="header_link_wishlist">
-                        <a href="/ar/module/novblockwishlist/mywishlist" title="My Wishlists">
+                        <a href="{{route('wishlist')}}" title="My Wishlists">
                             <i class="header-icon-wishlist"></i>
                         </a>
                     </div>

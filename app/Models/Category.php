@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model
 {
-    use Translatable;
+    use Translatable,
+        HasFactory;
     protected $table = 'categories';
-    protected $fillable = ['slug', 'is_active', 'created_at', 'updated_at'];
+    protected $fillable = ['slug', 'is_active', 'parent_id', 'created_at', 'updated_at'];
 
     /**
      *
@@ -37,7 +40,7 @@ class Category extends Model
     public function scopeParent($query){
         return $query -> whereNull('parent_id');
     }
-    public function scopeChild($query){
+    public function scopeChildren($query){
         return $query -> whereNotNull('parent_id');
     }
     public function getActive():string {
@@ -45,5 +48,14 @@ class Category extends Model
     }
     public function _parent(){
         return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    public function _children(){
+        return $this->hasMany(self::class, 'parent_id');
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'products_categories');
     }
 }

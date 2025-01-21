@@ -103,10 +103,18 @@ class Product extends Model
     }
     public function categories():BelongsToMany
     {
-        return $this->belongsToMany(Category::class, 'products_categories', 'product_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'products_categories');
     }
     public function images():HasMany
     {
         return $this->hasMany(ProductImage::class);
+    }
+    public function attributes():BelongsToMany
+    {
+        return $this->belongsToMany(Attribute::class, 'options');
+    }
+    public function reviews():BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'product_reviews');
     }
 }

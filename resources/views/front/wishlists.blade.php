@@ -86,7 +86,7 @@
                                 <div class="products product_list grid row" data-default-view="grid">
                                     @isset($products)
                                         @foreach($products as $product)
-                                            <div class="item  col-lg-4 col-md-6 col-xs-12 text-center no-padding">
+                                            <div class="item  col-lg-4 col-md-6 col-xs-12 text-center no-padding" id="card_product_{{$product->id}}">
                                                 <div class="product-miniature js-product-miniature item-one"
                                                      data-id-product="22" data-id-product-attribute="408" itemscope=""
                                                      itemtype="http://schema.org/Product">
@@ -94,14 +94,14 @@
                                                         <a href="audio/22-408-aenean-porta-ligula-egestas-east.html#/1-size-s/10-color-red"
                                                            class="thumbnail product-thumbnail two-image">
                                                             <img class="img-fluid image-cover"
-                                                                 src="{{$product -> images[0] -> photo ?? ''}}"
+                                                                 src="{{$product -> images[0] -> image ?? ''}}"
                                                                  alt=""
-                                                                 data-full-size-image-url="{{$product -> images[0] -> photo ?? ''}}"
+                                                                 data-full-size-image-url="{{$product -> images[0] -> image ?? ''}}"
                                                                  width="600" height="600">
                                                             <img class="img-fluid image-secondary"
-                                                                 src="{{$product -> images[0] -> photo ?? ''}}"
+                                                                 src="{{$product -> images[0] -> image ?? ''}}"
                                                                  alt=""
-                                                                 data-full-size-image-url="{{$product -> images[0] -> photo ?? ''}}"
+                                                                 data-full-size-image-url="{{$product -> images[0] -> image ?? ''}}"
                                                                  width="600" height="600">
                                                         </a>
 
@@ -169,8 +169,9 @@
                                                                         class="novicon-cart"></i><span>Add to cart</span></a>
                                                             </form>
 
-                                                            <a class="removeFromWishlist addToWishlist  wishlistProd_22" href="#"
-                                                               data-product-id="{{$product -> id}}">
+                                                            <a class="removeFromWishlist addToWishlist  wishlistProd_22 wish-list-product-{{$product->id}}" href="#"
+                                                               data-product-id="{{$product -> id}}"
+                                                               style=" background-color:@if(auth()->user()->wishListHas($product->id)) #0275d8 @else #b5b5b5 @endif; color:#fff  ">
                                                                 <i class="fa fa-heart"></i>
                                                                 <span>remove to Wishlist</span>
                                                             </a>
@@ -196,9 +197,9 @@
                             <nav class="pagination row justify-content-around">
                                 <div class="col col-xs-12 col-lg-6 col-md-12">
 
-    <span class='showing'>
-    Showing 1-4 of 4 item(s)
-    </span>
+                                <span class='showing'>
+                                Showing 1-4 of 4 item(s)
+                                </span>
 
                                 </div>
                                 <div class="col col-xs-12 col-lg-6 col-md-12">
@@ -254,10 +255,11 @@
                 type: 'delete',
                 url: "{{Route('wishlist.destroy')}}",
                 data: {
-                    'productId': $(this).attr('data-product-id'),
+                    '_token': "{{csrf_token()}}",
+                    'product_id': $(this).attr('data-product-id'),
                 },
                 success: function (data) {
-                    location.reload();
+                    $('#card_product_'+data.product_id).remove();
                 }
             });
         });

@@ -42,16 +42,14 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!--sliders-->
                                 <div class="nivoSlider">
-                                    <a href="#">
-                                        <img src='{{asset("assets/front/modules/novnivoslider/images/266cf50ba4d1d91fa5f5ded20bb66ea38de3b350_1.jpg")}}' alt="" title="#htmlcaption_42" />
-                                    </a>
-                                    <a href="#">
-                                        <img src='{{asset("assets/front/modules/novnivoslider/images/62896aebffd6fdce749d957fc76bd83d734fa338_2.jpg")}}' alt="" title="#htmlcaption_43" />
-                                    </a>
-                                    <a href="#">
-                                        <img src='{{asset("assets/front/modules/novnivoslider/images/195d62088850e3489886855b4239edcc4fb1868f_3.jpg")}}' alt="" title="#htmlcaption_57" />
-                                    </a>
+                                    @foreach(getSliders() as $slider)
+                                        <a href="#">
+                                            <img src='{{$slider->image}}' alt="" title="#htmlcaption_43" />
+                                        </a>
+                                    @endforeach
                                 </div>
                                 <div id="htmlcaption_42" class="nivo-html-caption">
                                     <div class="nov-slider-ct">

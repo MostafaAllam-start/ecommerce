@@ -43,7 +43,7 @@
                                         <span class="list-type" data-view-type="list"><i class="fa fa-bars"></i></span>
                                     </div>
                                     <div class="hidden-sm-down total-products">
-                                        <p>There are {{count($products) ?? '0'}} products.</p>
+                                        <p>There are {{count($category->products) ?? '0'}} products.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
@@ -86,24 +86,24 @@
                         <div id="categories-product">
                             <div id="js-product-list">
                                 <div class="products product_list grid row" data-default-view="grid">
-                                    @isset($products)
-                                        @foreach($products as $product)
+                                    @isset($category->products)
+                                        @foreach($category->products as $product)
                                             <div class="item  col-lg-4 col-md-6 col-xs-12 text-center no-padding">
                                                 <div class="product-miniature js-product-miniature item-one"
                                                      data-id-product="22" data-id-product-attribute="408" itemscope=""
                                                      itemtype="http://schema.org/Product">
                                                     <div class="thumbnail-container">
-                                                        <a href="{{route('product.details',$product -> slug)}}"
+                                                        <a href="{{route('products.details',$product -> slug)}}"
                                                            class="thumbnail product-thumbnail two-image">
                                                             <img class="img-fluid image-cover"
-                                                                 src="{{$product -> images[0] -> photo ?? ''}}"
+                                                                 src="{{$product -> images[0] -> image ?? ''}}"
                                                                  alt=""
-                                                                 data-full-size-image-url="{{$product -> images[0] -> photo ?? ''}}"
+                                                                 data-full-size-image-url="{{$product -> images[0] -> image ?? ''}}"
                                                                  width="600" height="600">
                                                             <img class="img-fluid image-secondary"
-                                                                 src="{{$product -> images[0] -> photo ?? ''}}"
+                                                                 src="{{$product -> images[0] -> image ?? ''}}"
                                                                  alt=""
-                                                                 data-full-size-image-url="{{$product -> images[0] -> photo ?? ''}}"
+                                                                 data-full-size-image-url="{{$product -> images[0] -> image ?? ''}}"
                                                                  width="600" height="600">
                                                         </a>
 
@@ -114,11 +114,14 @@
                                                         <div class="product-groups">
 
                                                             <div class="category-title"><a
-                                                                    href="">Audio</a>
+                                                                    href="">{{$category->name}}</a>
                                                             </div>
 
                                                             <div class="group-reviews">
                                                                 <div class="product-comments">
+{{--                                                                    @foreach($product->reviews as $review)--}}
+{{--                                                                        <p>{{$review->comment}}</p>--}}
+{{--                                                                    @endforeach--}}
                                                                     <div class="star_content">
                                                                         <div class="star"></div>
                                                                         <div class="star"></div>
@@ -139,7 +142,7 @@
                                                             </div>
 
                                                             <div class="product-title" itemprop="name"><a
-                                                                    href="{{route('product.details',$product -> slug)}}">{{$product -> name}}</a></div>
+                                                                    href="{{route('products.details',$product -> slug)}}">{{$product -> name}}</a></div>
 
                                                             <div class="product-group-price">
                                                                 <div class="product-price-and-shipping">
@@ -171,8 +174,10 @@
                                                                         class="novicon-cart"></i><span>Add to cart</span></a>
                                                             </form>
 
-                                                            <a class="addToWishlist  wishlistProd_22" href="#"
+                                                            <a class="addToWishlist  wishlistProd_22 wish-list-product-{{$product->id}}" href="#"
+                                                               id="wishlist-{{$product->id}}"
                                                                data-product-id="{{$product -> id}}"
+                                                               style="@if(auth()->user()->wishListHas($product->id)) background-color:#0275d8; @endif "
                                                             >
                                                                 <i class="fa fa-heart"></i>
                                                                 <span>Add to Wishlist</span>
@@ -199,9 +204,9 @@
                             <nav class="pagination row justify-content-around">
                                 <div class="col col-xs-12 col-lg-6 col-md-12">
 
-    <span class='showing'>
-    Showing 1-4 of 4 item(s)
-    </span>
+                                <span class='showing'>
+                                Showing 1-4 of 4 item(s)
+                                </span>
 
                                 </div>
                                 <div class="col col-xs-12 col-lg-6 col-md-12">
@@ -255,16 +260,25 @@
             @endguest
             $.ajax({
                 type: 'post',
-                url: "{{Route('wishlist.store')}}",
+                url: "{{Route('wishlist.toggle')}}",
                 data: {
-                    'productId': $(this).attr('data-product-id'),
+                    '_token':"{{csrf_token()}}",
+                    'product_id': $(this).attr('data-product-id'),
                 },
                 success: function (data) {
-                    if(data.wished )
-                    $('.alert-modal').css('display','block');
-                    else
+                    var item = $('.wish-list-product-'+data.product_id);
+                    if(data.status === 201 ){
+                        $('.alert-modal').css('display','block');
+                            item.css('background-color','#0275d8');
+                            item.css('color', '#fff')
+                    }
+                    else{
                         $('.alert-modal2').css('display','block');
-                }
+                        item.css('background-color','#b5b5b5');
+                        item.css('color', '#fff');
+                    }
+
+                },
             });
         });
 

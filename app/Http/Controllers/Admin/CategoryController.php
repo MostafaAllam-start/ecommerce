@@ -5,18 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
     public function index(){
-        $categories = Category::selection()->paginate(env('PAGINATION_COUNT'));
+        $categories = Category::paginate(env('PAGINATION_COUNT'));
         return view('admin.categories.index', compact('categories'));
     }
 
     public function create(){
-        return view('admin.categories.create');
+        $categories = Category::selection()->get();
+        return view('admin.categories.create', compact('categories'));
     }
 
     public function store(CategoryRequest $request){
@@ -24,10 +25,12 @@ class CategoryController extends Controller
             DB::beginTransaction();
             $validated_data = $request->validated();
             $category = Category::create($validated_data);
+            if(Arr::has($validated_data, 'parent_id'))
+                $category->parent_id = $validated_data['parent_id'];
             $category->name = $validated_data['name'];
             $category->save();
             DB::commit();
-            return redirect()->route('admin.categories')->with(['success'=>'تم اضافة التصنيف بنجاح.']);
+            return redirect()->route('admin.categories')->with(['success'=>'تم اضافة القسم بنجاح.']);
         }
         catch (\Exception $ex){
             DB::rollBack();
@@ -37,7 +40,8 @@ class CategoryController extends Controller
     }
     public function edit($id){
         $category = Category::findOrFail($id);
-        return view('admin.categories.edit', compact('category'));
+        $categories = Category::where('id', '!=', $id)->get();
+        return view('admin.categories.edit', compact('categories', 'category'));
     }
 
     public function update(CategoryRequest $request, $id){
@@ -45,6 +49,8 @@ class CategoryController extends Controller
             DB::beginTransaction();
             $category = Category::findOrFail($id);
             $validated_data = $request->validated();
+            if($validated_data['type'] == 1)
+                $validated_data['parent_id'] = null;
             $category->update($validated_data);
             $category->name = $validated_data['name'];
             $category->save();

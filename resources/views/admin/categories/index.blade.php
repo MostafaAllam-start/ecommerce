@@ -48,8 +48,9 @@
                                             <thead class="">
                                             <tr>
                                                 <th>القسم </th>
-                                                 <th>الاسم بالرابط</th>
-                                                 <th>الحالة</th>
+                                                <th>الاسم بالرابط</th>
+                                                <th>القسم الرئيسي  </th>
+                                                <th>الحالة</th>
                                                 <th>الإجراءات</th>
                                             </tr>
                                             </thead>
@@ -60,6 +61,7 @@
                                                     <tr>
                                                         <td>{{$category -> name}}</td>
                                                         <td>{{$category -> slug}}</td>
+                                                        <td>{{$category->parent_id ? $category -> _parent -> name : '' }}</td>
                                                         <td>{{$category -> getActive()}}</td>
                                                         <td>
                                                             <div class="btn-group" role="group"

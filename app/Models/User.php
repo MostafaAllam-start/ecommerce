@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -44,5 +46,19 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function wishList(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'wish_lists');
+    }
+    public function wishListHas($product_id): bool
+    {
+        return self::wishList()->where('product_id', $product_id)->exists();
+    }
+
+    public function reviews():BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'reviews');
     }
 }

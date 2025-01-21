@@ -22,6 +22,8 @@ class CategoryRequest extends FormRequest
             'name' => 'required|string',
             'slug' => 'required|string|unique:categories,slug,'.$this->id,
             'is_active' => 'required|in:0,1',
+            'type' => 'required|in:1,2',
+            'parent_id' => 'required_if:type,2|exists:categories,id',
         ];
     }
 }

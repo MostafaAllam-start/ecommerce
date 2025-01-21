@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-textdirection="{{LaravelLocalization::getCurrentLocaleDirection()}}">
 <head>
 
 
@@ -415,34 +415,34 @@
             <div class="w-100">
                 <div class="item-language current">
                     <a href="index.htm?home=home_3" class="d-flex align-items-center"><img class="img-fluid mr-2"
-                                                                                           src='{{asset("assets/front/img/l/1.jpg")}}'
+                                                                                           src='{{asset("assets/front/img/l/en.jpg")}}'
                                                                                            alt="English (English)"
                                                                                            width="16" height="11"><span>English</span></a>
                 </div>
                 <div class="item-language">
                     <a href="http://demo.bestprestashoptheme.com/savemart/fr/?home=home_3"
-                       class="d-flex align-items-center"><img class="img-fluid mr-2" src='{{asset("assets/front/img/l/2.jpg")}}'
+                       class="d-flex align-items-center"><img class="img-fluid mr-2" src='{{asset("assets/front/img/l/fr.jpg")}}'
                                                               alt="Français (French)" width="16" height="11"><span>Français</span></a>
                 </div>
                 <div class="item-language">
                     <a href="http://demo.bestprestashoptheme.com/savemart/es/?home=home_3"
-                       class="d-flex align-items-center"><img class="img-fluid mr-2" src='{{asset("assets/front/img/l/3.jpg")}}'
+                       class="d-flex align-items-center"><img class="img-fluid mr-2" src='{{asset("assets/front/img/l/es.jpg")}}'
                                                               alt="Español (Spanish)" width="16" height="11"><span>Español</span></a>
                 </div>
                 <div class="item-language">
                     <a href="http://demo.bestprestashoptheme.com/savemart/it/?home=home_3"
-                       class="d-flex align-items-center"><img class="img-fluid mr-2" src='{{asset("assets/front/img/l/4.jpg")}}'
+                       class="d-flex align-items-center"><img class="img-fluid mr-2" src='{{asset("assets/front/img/l/it.jpg")}}'
                                                               alt="Italiano (Italian)" width="16" height="11"><span>Italiano</span></a>
                 </div>
                 <div class="item-language">
                     <a href="http://demo.bestprestashoptheme.com/savemart/pl/?home=home_3"
-                       class="d-flex align-items-center"><img class="img-fluid mr-2" src='{{asset("assets/front/img/l/5.jpg")}}'
+                       class="d-flex align-items-center"><img class="img-fluid mr-2" src='{{asset("assets/front/img/l/pl.jpg")}}'
                                                               alt="Polski (Polish)" width="16"
                                                               height="11"><span>Polski</span></a>
                 </div>
                 <div class="item-language">
                     <a href="http://demo.bestprestashoptheme.com/savemart/ar/?home=home_3"
-                       class="d-flex align-items-center"><img class="img-fluid mr-2" src='{{asset("assets/front/img/l/6.jpg")}}'
+                       class="d-flex align-items-center"><img class="img-fluid mr-2" src='{{asset("assets/front/img/l/ar.jpg")}}'
                                                               alt="اللغة العربية (Arabic)" width="16" height="11"><span>اللغة العربية</span></a>
                 </div>
             </div>
@@ -468,7 +468,6 @@
 
 
 <script type="text/javascript" src="{{asset('assets/front/themes/vinova_savemart/assets/cache/bottom-3c96ed23.js')}}"></script>
-
-
+@yield('scripts')
 </body>
 </html>

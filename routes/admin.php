@@ -7,12 +7,11 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OptionController;
-use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\VendorController;
-use App\Models\Category;
-use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -22,8 +21,8 @@ Route::middleware('guest')->namespace('Admin')->group(function(){
     Route::post('/login', [AdminLoginController::class, 'postLogin'])->name('admin.postlogin');
 });
 
-
 Route::middleware('admin')->group(function() {
+
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::prefix('language')->group(function(){
@@ -45,6 +44,16 @@ Route::middleware('admin')->group(function() {
         Route::post('/update/{id}', [CategoryController::class, 'update'])->name('admin.categories.update');
         Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('admin.categories.delete');
         Route::get('/change_status/{id}', [CategoryController::class, 'changeStatus'])->name('admin.categories.change_status');
+    });
+
+    Route::prefix('sub_categories')->group(function(){
+        Route::get('/', [SubCategoryController::class, 'index'])->name('admin.sub_categories');
+        Route::get('/create', [SubCategoryController::class, 'create'])->name('admin.sub_categories.create');
+        Route::post('/store', [SubCategoryController::class, 'store'])->name('admin.sub_categories.store');
+        Route::get('/edit/{id}', [SubCategoryController::class, 'edit'])->name('admin.sub_categories.edit');
+        Route::post('/update/{id}', [SubCategoryController::class, 'update'])->name('admin.sub_categories.update');
+        Route::get('/delete/{id}', [SubCategoryController::class, 'delete'])->name('admin.sub_categories.delete');
+        Route::get('/change_status/{id}', [SubCategoryController::class, 'changeStatus'])->name('admin.sub_categories.change_status');
     });
 
     Route::prefix('vendors')->group(function(){
@@ -92,7 +101,12 @@ Route::middleware('admin')->group(function() {
         Route::post('stock/store', [ProductController::class, 'storeStock'])->name('admin.products.stock.store');
 
     });
-
+    Route::prefix('sliders')->group(function (){
+        Route::get('/', [SliderController::class, 'uploadImages'])->name('admin.sliders');
+        Route::post('/save', [SliderController::class, 'saveImages'])->name('admin.sliders.save');
+        Route::post('/delete', [SliderController::class, 'deleteImage'])->name('admin.sliders.delete');
+        Route::post('/store', [SliderController::class, 'storeImages'])->name('admin.sliders.store');
+    });
     Route::prefix('tags')->group(function(){
         Route::get('/', [TagController::class, 'index'])->name('admin.tags');
         Route::get('/create', [TagController::class, 'create'])->name('admin.tags.create');
@@ -146,5 +160,4 @@ Route::middleware('admin')->group(function() {
         })->name('admin.test.delete_photo');
     });
 });
-
 
